@@ -1,0 +1,731 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Define CSS Variables for better maintainability */
+:root {
+    --bg-dark: #1A1A2E; /* Very dark blue-grey */
+    --bg-medium: #2A2A4A; /* Deep blue-purple for sections */
+    --bg-light: #3A3A60; /* Slightly lighter blue-purple for cards */
+    --text-color: #E0E0E0; /* Light grey for general text */
+    --primary-accent: #B4A0FF; /* Vibrant Purple (from PDF) */
+    --secondary-accent: #00FFFF; /* Bright Cyan (from PDF) */
+    --heading-color: var(--primary-accent); /* Headings in vibrant purple */
+    --border-color: #4A4A70; /* Subtle blue-grey border */
+    --nav-link-color: #C0C0FF; /* Lighter shade for nav links */
+    --nav-bg-color: #2F2F50; /* New color for navigation bar */
+    --section-bg-color: #20203A; /* Darker blue-grey for main sections */
+    --hamburger-color: var(--primary-accent); /* NEW: Color for the hamburger icon */
+
+
+    --spacing-xs: 0.5rem; /* 8px */
+    --spacing-sm: 1rem;    /* 16px */
+    --spacing-md: 1.5rem; /* 24px */
+    --spacing-lg: 2.5rem; /* 40px */
+    --spacing-xl: 3.75rem; /* 60px */
+    --spacing-xxl: 5rem; /* 80px */
+
+    --border-radius-sm: 6px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 25px;
+
+    --transition-speed: 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  /* Background gradient matching the overall dark tone of the PDF */
+  background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-medium) 70%, var(--bg-dark) 100%);
+  color: var(--text-color);
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Navigation (Desktop Styles) */
+nav.main-nav { /* CHANGED: Added .main-nav class selector */
+  background-color: var(--nav-bg-color); /* Updated navigation background color */
+  padding: var(--spacing-sm) var(--spacing-md);
+  display: flex;
+  justify-content: center; /* Centered for larger screens */
+  gap: var(--spacing-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
+}
+
+nav.main-nav a { /* CHANGED: Added .main-nav class selector */
+  color: var(--nav-link-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-speed);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+nav.main-nav a:hover { /* CHANGED: Added .main-nav class selector */
+  color: var(--secondary-accent);
+  background-color: rgba(var(--primary-accent), 0.15);
+}
+
+/* --- START: CSS FOR HAMBURGER MENU (MOBILE/TABLET) --- */
+
+/* Hide the actual checkbox input from view */
+.nav-toggle {
+  display: none;
+}
+
+/* Style the label which will act as the hamburger icon */
+.nav-toggle-label {
+  position: fixed; /* Keep the icon fixed in position on scroll */
+  top: var(--spacing-md); /* Adjust vertical position */
+  left: var(--spacing-md); /* Adjust horizontal position */
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 1001; /* Ensure icon is above the nav and other content */
+  display: none; /* Hidden by default on desktop, shown only on mobile */
+}
+
+/* Styling for the individual bars of the hamburger icon */
+.nav-toggle-label span {
+  display: block;
+  position: absolute;
+  height: 4px; /* Thickness of the bars */
+  width: 100%; /* Full width for bars */
+  background: var(--hamburger-color); /* Color of the bars */
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out; /* Smooth animation for opening/closing */
+}
+
+/* Position the three bars */
+.nav-toggle-label span:nth-child(1) {
+  top: 0px;
+}
+.nav-toggle-label span:nth-child(2) {
+  top: 10px; /* Middle bar position */
+}
+.nav-toggle-label span:nth-child(3) {
+  top: 20px; /* Bottom bar position */
+}
+/* Removed the fourth span if you only have 3 in HTML */
+/* .nav-toggle-label span:nth-child(4) {
+  top: 20px;
+} */
+
+/* --- END: CSS FOR HAMBURGER MENU (MOBILE/TABLET) --- */
+
+
+/* Hero Section */
+.hero {
+  background-color: var(--bg-medium);
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-md);
+  color: var(--primary-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+.hero .subtitle {
+  font-size: 1.3em;
+  color: #DCDCDC;
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero p {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+    color: var(--text-color);
+}
+
+.buttons {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.btn {
+  text-decoration: none;
+  padding: 10px 25px;
+  border-radius: var(--border-radius-lg);
+  display: inline-block;
+  font-weight: 600;
+  transition: all var(--transition-speed);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn.primary {
+  background-color: var(--primary-accent);
+  color: var(--bg-dark);
+}
+
+.btn.secondary {
+  border: 2px solid var(--primary-accent);
+  color: var(--primary-accent);
+  background: transparent;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Sections */
+.section {
+  margin: var(--spacing-xl) auto;
+  max-width: 1100px;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background-color: var(--section-bg-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.section h2 {
+  font-size: 2em;
+  margin-bottom: var(--spacing-lg);
+  color: var(--heading-color);
+  font-weight: 700;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+/* Generic list styling for content sections */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* General grid for skills and education */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+.skills-grid div {
+  flex: 1;
+  min-width: 280px;
+  background-color: var(--bg-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.skills-grid h3 {
+    color: var(--primary-accent);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Projects */
+.project {
+  background: var(--bg-light);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-speed);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.project:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.project-image {
+    flex-shrink: 0;
+    width: 450px;
+    min-width: 200px;
+    height: 330px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: var(--border-radius-sm);
+  object-fit: cover; /* Ensure image covers the area without distortion */
+}
+
+.project-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-info h3 {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* New style for project title link */
+.project-title-link {
+    color: var(--primary-accent);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+    display: block;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.project-title-link:hover {
+    color: var(--secondary-accent);
+    text-decoration: underline;
+}
+
+/* Skill icons at the bottom of projects */
+.project-skills-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+    align-items: center;
+}
+
+.project-skills-icons img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 3px rgba(var(--primary-accent), 0.3));
+    border-radius: 3px;
+}
+
+/* Project actions (like GitHub link) */
+.project-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--spacing-sm);
+    align-items: center;
+}
+
+.project-actions a {
+    color: var(--secondary-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.project-actions a:hover {
+    color: var(--primary-accent);
+    text-decoration: underline;
+}
+
+.project-actions svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--secondary-accent);
+    transition: fill var(--transition-speed);
+}
+
+.project-actions a:hover svg {
+    fill: var(--primary-accent);
+}
+
+
+/* Resume & Contact */
+.resume-link {
+  display: inline-block;
+  margin-top: var(--spacing-sm);
+  font-weight: bold;
+  color: var(--primary-accent);
+  text-decoration: underline;
+}
+
+/* Contact Section - Updated Styling (Applied to Skills as well) */
+#contact ul, #skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+/* Specific adjustments for #skills ul */
+#skills ul {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#contact li, #skills li {
+  margin-bottom: 0;
+  flex: 0 0 calc(50% - (var(--spacing-lg) / 2));
+  background-color: var(--bg-medium);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  max-width: 480px; /* Added max-width for better control in 2-column layout */
+}
+
+#contact li:hover, #skills li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+#contact li svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--primary-accent);
+    flex-shrink: 0;
+}
+
+#skills li img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(var(--primary-accent), 0.5));
+    flex-shrink: 0;
+}
+
+#contact li div, #skills li div {
+    flex-grow: 1;
+}
+
+#contact li strong, #skills li strong {
+    color: var(--primary-accent);
+    display: block;
+    margin-bottom: 5px;
+}
+#skills li h4 {
+    color: var(--primary-accent);
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    display: block;
+}
+
+
+#contact li a {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+#contact li a:hover {
+    color: var(--secondary-accent);
+    text-decoration: underline;
+}
+
+/* Awards and Achievements */
+#achievements {
+    display: flex; /* Use flexbox for the main section */
+    flex-direction: column; /* Stack heading, then content */
+    gap: var(--spacing-lg); /* Space between heading and content */
+    align-items: center; /* Center items horizontally */
+    margin: var(--spacing-xl) auto;
+    max-width: 1100px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    background-color: var(--section-bg-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#achievements h2 {
+    width: 100%; /* Make heading take full width */
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--heading-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+.achievements-content-wrapper {
+    display: flex;
+    flex-direction: row; /* Default to row for larger screens */
+    gap: var(--spacing-lg);
+    width: 100%; /* Take full width of the section */
+    justify-content: center; /* Center the image and list */
+}
+
+.achievements-image-container {
+    display: none; /* Hide the image container by default */
+}
+
+.achievements-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius-sm);
+    object-fit: cover;
+}
+
+#achievements ul {
+    flex-grow: 1; /* Allow the list to take remaining space */
+    padding-left: 0; /* Reset padding as it's now inside a flex item */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    position: relative;
+    padding-left: 40px; /* Space for numbers and line */
+    width: 100%; /* Ensure list takes full width when image is gone */
+    max-width: 600px; /* Optional: constrain max width of the list */
+}
+
+#achievements ul::before {
+    content: '';
+    position: absolute;
+    left: 20px; /* Aligns with the center of the numbers */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color); /* Color of the vertical line */
+    z-index: 0;
+}
+
+#achievements li {
+    background-color: var(--bg-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-speed);
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1; /* Ensures li content is above the line */
+    margin-left: -20px; /* Pulls the li left to align with the line */
+}
+
+#achievements li:hover {
+    transform: translateX(5px);
+    background-color: #4A4A70; /* Slightly lighter on hover */
+}
+
+.achievement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.achievement-number {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-accent);
+    color: var(--bg-dark);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.1em;
+    position: relative;
+    z-index: 2; /* Ensures number is on top of line */
+    margin-left: -35px; /* Adjust to position number over the line */
+    margin-top: 5px; /* Adjust vertical alignment */
+}
+
+.achievement-text {
+    flex-grow: 1;
+    padding-top: 5px; /* Align text with the number */
+}
+
+
+/* New highlight section */
+.highlight-section {
+    background-color: var(--primary-accent);
+    color: var(--bg-dark);
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: var(--spacing-xxl);
+}
+/* Responsive */
+@media (max-width: 900px) {
+    #contact ul li, #skills ul li {
+        flex-basis: calc(50% - (var(--spacing-lg) / 2));
+        /* max-width: unset; -- removed as a general max-width is applied above */
+    }
+    .project {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .project-image {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+    .project-info {
+        min-height: unset;
+    }
+    .project-actions {
+        justify-content: flex-start;
+    }
+    .achievements-content-wrapper {
+        flex-direction: column; /* Stack image and list on smaller screens */
+    }
+    .achievements-image-container {
+        width: 80%; /* Make image wider when stacked */
+        max-width: 400px; /* Limit max width */
+        margin: 0 auto var(--spacing-md); /* Center and add margin below */
+        min-height: 250px; /* Adjust min height for smaller screens */
+    }
+    #achievements ul {
+        padding-left: 40px; /* Keep padding for the vertical line */
+    }
+}
+
+@media (max-width: 768px) { /* Tablet and smaller */
+    /* NEW: Show the hamburger icon */
+    .nav-toggle-label {
+        display: block;
+    }
+
+    /* NEW: Hide the main navigation and prepare it for slide-in */
+    nav.main-nav {
+        position: fixed; /* Make it fixed to cover the screen */
+        top: 0;
+        left: -100%; /* Start off-screen to the left */
+        width: 100%;
+        height: 100%; /* Take full height of the viewport */
+        background-color: var(--nav-bg-color); /* Background for the full-screen menu */
+        flex-direction: column; /* Stack items vertically */
+        justify-content: flex-start; /* Align items to the top */
+        padding-top: 80px; /* Provide space at the top so links aren't hidden by icon */
+        transition: left 0.3s ease-in-out; /* Smooth slide-in animation */
+        border-bottom: none; /* No bottom border for a full-screen menu */
+        overflow-y: auto; /* Allow scrolling if there are many links */
+        align-items: center; /* Center links horizontally when stacked */
+    }
+
+    /* NEW: Style the navigation links when the menu is open */
+    nav.main-nav a {
+        width: 90%; /* Make links take most of the width for easier tapping */
+        text-align: center; /* Center the text within each link */
+        margin: 15px auto; /* Add vertical spacing between links and center them */
+        padding: var(--spacing-sm) var(--spacing-md); /* Increase padding for touch targets */
+        font-size: 1.3em; /* Larger font size for readability */
+    }
+
+    /* NEW: CORE CSS-ONLY TOGGLE LOGIC: When the hidden checkbox is :checked, slide the menu into view */
+    .nav-toggle:checked ~ .main-nav {
+        left: 0; /* Move the menu to be fully visible */
+    }
+
+    /* NEW: Hamburger to 'X' animation when checked */
+    /* These rules transform the bars into an 'X' shape */
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+        top: 10px; /* Move to middle */
+        width: 0%; /* Disappear */
+        left: 50%;
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+        transform: rotate(45deg); /* Rotate to form part of 'X' */
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg); /* Rotate to form other part of 'X' */
+    }
+    /* If you had a 4th span in HTML and want animation, add it here */
+    /* .nav-toggle:checked + .nav-toggle-label span:nth-child(4) {
+        top: 10px;
+        width: 0%;
+        left: 50%;
+    } */
+
+
+    /* REMOVED/MODIFIED CONFLICTING OLD NAV STYLES IN THIS MEDIA QUERY */
+    /* nav {
+        justify-content: flex-start;
+        padding: var(--spacing-sm);
+    } */
+    /* nav a {
+        margin: 5px 0;
+    } */
+
+    #skills ul li,
+    #contact ul li {
+        flex-basis: 100%; /* Stack items on small screens */
+        max-width: 90%; /* Constrain width for better readability */
+    }
+}
+
+@media (max-width: 600px) {
+  .skills-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2em;
+  }
+
+  .section h2 {
+    font-size: 1.6em;
+  }
+
+  /* REMOVED/MODIFIED CONFLICTING OLD NAV STYLES IN THIS MEDIA QUERY */
+  /* nav {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+  }
+
+  nav a {
+    margin: 5px;
+  } */
+
+  .buttons {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+  }
+
+  .btn {
+      width: 80%;
+      margin: 0 auto;
+  }
+
+  #contact ul, #skills ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project {
+          padding: var(--spacing-sm);
+  }
+
+  .section {
+          padding: var(--spacing-sm);
+  }
+}
+
+/* Optional: Tablet breakpoint */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .section {
+        padding: var(--spacing-md);
+    }
+    #skills ul li {
+        flex: 1 1 200px;
+        max-width: unset;
+    }
+}
